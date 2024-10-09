@@ -1,5 +1,6 @@
 package br.com.projetojava.screenmatch;
 
+import br.com.projetojava.screenmatch.model.DadosEpisodio;
 import br.com.projetojava.screenmatch.model.DadosSerie;
 import br.com.projetojava.screenmatch.service.ConsumoApi;
 import br.com.projetojava.screenmatch.service.ConverteDados;
@@ -19,10 +20,11 @@ public class ScreenmatchApplication implements CommandLineRunner {
 		var consumoApi = new ConsumoApi();
 
 		var json = consumoApi.obterDados("https://www.omdbapi.com/?t=game+of+thrones&apikey=f25593e7");
-//		json = consumoApi.obterDados("https://coffee.alexflipnote.dev/random.json");
-//		System.out.println(json);
+		var jsonep = consumoApi.obterDados("https://www.omdbapi.com/?t=game+of+thrones&season=1&episode=2&apikey=f25593e7");
 		ConverteDados conversor = new ConverteDados();
 		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
+		DadosEpisodio dadosep = conversor.obterDados(jsonep, DadosEpisodio.class);
 		System.out.println(dados);
+		System.out.println(dadosep);
 	}
 }
