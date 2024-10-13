@@ -1,12 +1,13 @@
 package br.com.projetojava.screenmatch;
 
-import br.com.projetojava.screenmatch.model.DadosEpisodio;
-import br.com.projetojava.screenmatch.model.DadosSerie;
+import br.com.projetojava.screenmatch.model.DadosTemporada;
+import br.com.projetojava.screenmatch.principal.Principal;
 import br.com.projetojava.screenmatch.service.ConsumoApi;
-import br.com.projetojava.screenmatch.service.ConverteDados;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
@@ -17,14 +18,13 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Principal principal = new Principal();
 		var consumoApi = new ConsumoApi();
+		principal.exibMenu();
+		List<DadosTemporada> temporadas = new ArrayList<>();
 
-		var json = consumoApi.obterDados("https://www.omdbapi.com/?t=game+of+thrones&apikey=f25593e7");
-		var jsonep = consumoApi.obterDados("https://www.omdbapi.com/?t=game+of+thrones&season=1&episode=2&apikey=f25593e7");
-		ConverteDados conversor = new ConverteDados();
-		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
-		DadosEpisodio dadosep = conversor.obterDados(jsonep, DadosEpisodio.class);
-		System.out.println(dados);
-		System.out.println(dadosep);
-	}
+
+
+
 }
+	}
