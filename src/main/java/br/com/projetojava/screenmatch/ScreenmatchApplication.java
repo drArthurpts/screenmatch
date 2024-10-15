@@ -20,7 +20,7 @@ public class ScreenmatchApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Principal principal = new Principal();
 		var consumoApi = new ConsumoApi();
-		principal.exibMenu();
+		principal.exibeMenu();
 		List<DadosTemporada> temporadas = new ArrayList<>();
 
 
